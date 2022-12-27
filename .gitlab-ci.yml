@@ -1,0 +1,9 @@
+---
+stages:
+  - review
+
+variables:
+  COMPOSE_FILE: "deploy/docker-compose.yml"
+  COMPOSE_UP_PARAMETERS: "--build --force-recreate --remove-orphans"
+include:
+  - remote: https://gitlab.fsrv.services/fsrvcorp/container/integration-test-driver/-/raw/main/templates/basic.yaml
