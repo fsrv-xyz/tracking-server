@@ -1,9 +1,62 @@
+#---
+#stages:
+#  - review
+#
+#variables:
+#  COMPOSE_FILE: "deploy/docker-compose.yml"
+#  COMPOSE_UP_PARAMETERS: "--build --force-recreate --remove-orphans"
+#include:
+#  - remote: https://gitlab.fsrv.services/fsrvcorp/container/integration-test-driver/-/raw/main/templates/basic.yaml
+
+
 ---
 stages:
-  - review
+  - test
+  - release
+  - build
 
+.go_template_defaults:
+  stage: test
+.semver_template_defaults:
+  stage: release
 variables:
-  COMPOSE_FILE: "deploy/docker-compose.yml"
-  COMPOSE_UP_PARAMETERS: "--build --force-recreate --remove-orphans"
+  SEMVER_PREFIX: v
 include:
-  - remote: https://gitlab.fsrv.services/fsrvcorp/container/integration-test-driver/-/raw/main/templates/basic.yaml
+  - remote: https://gitlab.com/bonsai-oss/organization/ci-templates/-/raw/main/templates/language/go.yml
+  - remote: https://gitlab.com/bonsai-oss/organization/ci-templates/-/raw/main/templates/release/semver.yml
+
+build database:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  rules:
+    - if: $CI_COMMIT_TAG || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile-database"
+      --destination "${CI_REGISTRY_IMAGE}-database:${CI_COMMIT_TAG}"
+      --destination "${CI_REGISTRY_IMAGE}-database:${CI_COMMIT_SHORT_SHA}"
+      --destination "${CI_REGISTRY_IMAGE}-database:latest"
+
+build ingress:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  rules:
+    - if: $CI_COMMIT_TAG || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile-ingress"
+      --destination "${CI_REGISTRY_IMAGE}-ingress:${CI_COMMIT_TAG}"
+      --destination "${CI_REGISTRY_IMAGE}-ingress:${CI_COMMIT_SHORT_SHA}"
+      --destination "${CI_REGISTRY_IMAGE}-ingress:latest"

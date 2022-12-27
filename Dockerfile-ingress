@@ -6,6 +6,7 @@ RUN go build -trimpath -ldflags '-s -w' -o /bin/app cmd/ingress/*.go
 RUN apk add -U --no-cache ca-certificates
 
 FROM scratch
+EXPOSE 8080
 COPY --from=builder /bin/app /app
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 ENTRYPOINT ["/app"]

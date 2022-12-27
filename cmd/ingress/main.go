@@ -13,8 +13,8 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"tracs0r/pkg/proto"
-	"tracs0r/pkg/static"
+	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/proto"
+	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/static"
 )
 
 func handlerBuilder(ingestClient proto.IngestServiceClient) http.HandlerFunc {
@@ -59,5 +59,5 @@ func main() {
 
 	router := webbase.NewRouter()
 	router.PathPrefix("/png/").HandlerFunc(handlerBuilder(client))
-	webbase.ServeRouter("tracs0r", router, webbase.WithSentryDebug(true))
+	webbase.ServeRouter("tracking-server", router, webbase.WithSentryDebug(true))
 }

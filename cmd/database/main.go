@@ -8,8 +8,8 @@ import (
 
 	"google.golang.org/grpc"
 
-	"tracs0r/pkg/database"
-	"tracs0r/pkg/proto"
+	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/database"
+	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/proto"
 )
 
 type server struct {

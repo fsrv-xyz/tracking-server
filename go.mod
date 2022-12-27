@@ -1,4 +1,4 @@
-module tracs0r
+module gitlab.fsrv.services/fsrvcorp/analytics/tracking-server
 
 go 1.19
 
