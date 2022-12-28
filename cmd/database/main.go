@@ -23,7 +23,10 @@ func (s server) IngestMessage(ctx context.Context, request *proto.Request) (*pro
 		mad[v.Key] = v.Value
 	}
 
-	tx := s.database.Client.WithContext(ctx).Create(&database.Request{Headers: mad})
+	tx := s.database.Client.WithContext(ctx).Create(&database.Request{
+		Headers: mad,
+		Path:    request.GetPath(),
+	})
 	if tx.Error != nil {
 		return nil, tx.Error
 	}

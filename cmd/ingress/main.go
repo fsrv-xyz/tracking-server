@@ -30,6 +30,7 @@ func handlerBuilder(ingestClient proto.IngestServiceClient) http.HandlerFunc {
 		_, requestIngestError := ingestClient.IngestMessage(r.Context(), &proto.Request{
 			Timestamp: timestamppb.New(time.Now()),
 			Headers:   headers,
+			Path:      r.URL.Path,
 		})
 		if requestIngestError != nil {
 			log.Printf("can not ingest request %v", requestIngestError)
@@ -58,6 +59,6 @@ func main() {
 	fmt.Printf("connected to database at %s", databaseGrpcAddress)
 
 	router := webbase.NewRouter()
-	router.PathPrefix("/png/").HandlerFunc(handlerBuilder(client))
+	router.PathPrefix("/").HandlerFunc(handlerBuilder(client))
 	webbase.ServeRouter("tracking-server", router, webbase.WithSentryDebug(true))
 }

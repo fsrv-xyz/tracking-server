@@ -23,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IngestServiceClient interface {
-	// rpc IngestMessages (stream Request) returns (IngestResponse) {}
 	IngestMessage(ctx context.Context, in *Request, opts ...grpc.CallOption) (*IngestResponse, error)
 }
 
@@ -48,7 +47,6 @@ func (c *ingestServiceClient) IngestMessage(ctx context.Context, in *Request, op
 // All implementations must embed UnimplementedIngestServiceServer
 // for forward compatibility
 type IngestServiceServer interface {
-	// rpc IngestMessages (stream Request) returns (IngestResponse) {}
 	IngestMessage(context.Context, *Request) (*IngestResponse, error)
 	mustEmbedUnimplementedIngestServiceServer()
 }

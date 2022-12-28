@@ -7,13 +7,13 @@ import "google/protobuf/timestamp.proto";
 package proto;
 
 service IngestService {
-  //rpc IngestMessages (stream Request) returns (IngestResponse) {}
   rpc IngestMessage (Request) returns (IngestResponse) {}
 }
 
 message Request {
   google.protobuf.Timestamp timestamp = 1;
   repeated Header headers = 2;
+  string path = 3;
 }
 
 message Header {

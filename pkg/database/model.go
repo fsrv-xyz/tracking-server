@@ -13,4 +13,5 @@ type Request struct {
 	UpdatedAt time.Time
 	DeletedAt time.Time
 	Headers   datatypes.JSONMap
+	Path      string
 }
