@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 
 	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/database"
 	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/proto"
@@ -50,6 +51,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+	reflection.Register(s)
 	proto.RegisterIngestServiceServer(s, &server{
 		database: &db,
 	})
