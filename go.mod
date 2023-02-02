@@ -10,7 +10,7 @@ require (
 	google.golang.org/protobuf v1.28.1
 	gorm.io/datatypes v1.1.0
 	gorm.io/driver/postgres v1.4.6
-	gorm.io/gorm v1.24.3
+	gorm.io/gorm v1.24.4
 )
 
 require (
