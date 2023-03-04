@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "tracs0r/pkg/proto";
+option go_package = "ref.ci/fsrvcorp/analytics/tracking-server/pkg/proto";
 
 import "google/protobuf/timestamp.proto";
 

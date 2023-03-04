@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/database"
-	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/proto"
+	"ref.ci/fsrvcorp/analytics/tracking-server/pkg/database"
+	"ref.ci/fsrvcorp/analytics/tracking-server/pkg/proto"
 )
 
 type server struct {

@@ -1,4 +1,4 @@
-module gitlab.fsrv.services/fsrvcorp/analytics/tracking-server
+module ref.ci/fsrvcorp/analytics/tracking-server
 
 go 1.19
 

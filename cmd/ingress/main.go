@@ -13,8 +13,8 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/proto"
-	"gitlab.fsrv.services/fsrvcorp/analytics/tracking-server/pkg/static"
+	"ref.ci/fsrvcorp/analytics/tracking-server/pkg/proto"
+	"ref.ci/fsrvcorp/analytics/tracking-server/pkg/static"
 )
 
 func handlerBuilder(ingestClient proto.IngestServiceClient) http.HandlerFunc {
