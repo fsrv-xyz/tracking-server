@@ -4,11 +4,11 @@ go 1.19
 
 require (
 	github.com/bonsai-oss/webbase v1.3.2
-	github.com/golang/protobuf v1.5.2
+	github.com/golang/protobuf v1.5.3
 	github.com/google/uuid v1.3.0
 	google.golang.org/grpc v1.53.0
-	google.golang.org/protobuf v1.28.1
-	gorm.io/datatypes v1.1.0
+	google.golang.org/protobuf v1.29.0
+	gorm.io/datatypes v1.1.1
 	gorm.io/driver/postgres v1.4.8
 	gorm.io/gorm v1.24.6
 )
