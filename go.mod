@@ -3,7 +3,7 @@ module ref.ci/fsrvcorp/analytics/tracking-server
 go 1.19
 
 require (
-	github.com/bonsai-oss/webbase v1.3.7
+	github.com/bonsai-oss/webbase v1.4.0
 	github.com/golang/protobuf v1.5.3
 	github.com/google/uuid v1.5.0
 	google.golang.org/grpc v1.60.1
