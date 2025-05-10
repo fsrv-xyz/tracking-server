@@ -2,7 +2,7 @@ module ref.ci/fsrvcorp/analytics/tracking-server
 
 go 1.23
 
-toolchain go1.24.2
+toolchain go1.24.3
 
 require (
 	github.com/bonsai-oss/webbase v1.5.6
@@ -12,7 +12,7 @@ require (
 	google.golang.org/protobuf v1.36.6
 	gorm.io/datatypes v1.2.5
 	gorm.io/driver/postgres v1.5.11
-	gorm.io/gorm v1.26.0
+	gorm.io/gorm v1.26.1
 )
 
 require (
