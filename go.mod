@@ -8,7 +8,7 @@ require (
 	github.com/bonsai-oss/webbase v1.5.6
 	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.6.0
-	google.golang.org/grpc v1.72.0
+	google.golang.org/grpc v1.72.1
 	google.golang.org/protobuf v1.36.6
 	gorm.io/datatypes v1.2.5
 	gorm.io/driver/postgres v1.5.11
